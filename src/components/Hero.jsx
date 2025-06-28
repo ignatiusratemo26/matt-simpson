@@ -27,9 +27,83 @@ const Hero = () => {
         justifyContent: 'center',
         bgcolor: 'background.default',
         py: 4,
+        position: 'relative',
+        overflow: 'hidden',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: '-10%',
+          right: '-10%',
+          width: '300px',
+          height: '300px',
+          borderRadius: '50%',
+          background: 'linear-gradient(135deg, rgba(33, 150, 243, 0.05) 0%, rgba(33, 150, 243, 0.1) 100%)',
+          zIndex: 0,
+        },
+        '&::after': {
+          content: '""',
+          position: 'absolute',
+          bottom: '-15%',
+          left: '-15%',
+          width: '400px',
+          height: '400px',
+          borderRadius: '30%',
+          background: 'linear-gradient(45deg, rgba(33, 150, 243, 0.03) 0%, rgba(33, 150, 243, 0.08) 100%)',
+          transform: 'rotate(45deg)',
+          zIndex: 0,
+        },
       }}
     >
-      <Container maxWidth="lg">
+      {/* Floating geometric elements */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '20%',
+          left: '15%',
+          width: '60px',
+          height: '60px',
+          border: '2px solid',
+          borderColor: 'primary.main',
+          borderRadius: 2,
+          opacity: 0.4,
+          transform: 'rotate(15deg)',
+          zIndex: 0,
+          display: { xs: 'none', md: 'block' },
+        }}
+      />
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '60%',
+          right: '20%',
+          width: '80px',
+          height: '80px',
+          border: '3px solid',
+          borderColor: 'primary.main',
+          borderRadius: '50%',
+          opacity: 0.18,
+          zIndex: 0,
+          display: { xs: 'none', md: 'block' },
+        }}
+      />
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '30%',
+          right: '5%',
+          width: '0',
+          height: '0',
+          borderLeft: '25px solid transparent',
+          borderRight: '25px solid transparent',
+          borderBottom: '43px solid',
+          borderBottomColor: 'primary.main',
+          opacity: 0.28,
+          transform: 'rotate(30deg)',
+          zIndex: 0,
+          display: { xs: 'none', md: 'block' },
+        }}
+      />
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
         <Grid2 
           container 
           spacing={4} 
