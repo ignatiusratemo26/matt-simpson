@@ -1,0 +1,211 @@
+import React, { useState } from 'react';
+import {Container,Typography,Box,TextField,Button,Paper,Grid2,IconButton} from '@mui/material';
+import EmailIcon from '@mui/icons-material/Email';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import emailjs from '@emailjs/browser';
+
+emailjs.init(process.env.REACT_APP_EMAILJS_PUBLIC_KEY);
+
+const Contact = () => {
+ const [formData, setFormData] = useState({
+   name: '',
+   email: '',
+   message: '',
+ });
+  const handleChange = (e) => {
+   setFormData({
+     ...formData,
+     [e.target.name]: e.target.value,
+   });
+ };
+ const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    try {
+      console.log(process.env.REACT_APP_EMAILJS_PUBLIC_KEY);
+
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        to_name: 'Matt Simpson',
+      };
+       await emailjs.send(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+        templateParams
+      );
+       // Clear form after successful submission
+      setFormData({
+        name: '',
+        email: '',
+        message: '',
+      });
+       alert('Message sent successfully!');
+    } catch (error) {
+      console.error('Error sending email:', error);
+      alert('Failed to send message. Please try again.');
+    }
+  };
+  return (
+   <Box
+     component="section"
+     sx={{
+       py: 8,
+       bgcolor: 'background.paper',
+       minHeight: '100vh',
+       display: 'flex',
+       alignItems: 'center',
+       justifyContent: 'center',
+     }}
+   >
+     <Container maxWidth="lg" sx={{ mx: "auto", px: { xs: 2, md: 4 }, maxWidth: "1000px", justifyContent: "center" }}>
+        <Typography
+        variant="h2"
+        component="h1"
+        gutterBottom
+        sx={{
+        fontWeight: 'bold',
+        textAlign: 'center',
+        mb: 6,
+        fontSize: { xs: '2.5rem', md: '3.5rem' },
+        color: 'primary.main',  
+        }}
+        >
+
+        Get In Touch
+        </Typography>
+
+
+          <Grid2 container spacing={6}>
+           {/* Contact Form */}
+           <Grid2 item xs={12} md={6}
+           >
+             <Paper 
+               elevation={3}
+               sx={{
+                 p: 4,
+                 height: '100%',
+               }}
+             >
+               <form onSubmit={handleSubmit}>
+                 <TextField
+                   fullWidth
+                   label="Name"
+                   name="name"
+                   value={formData.name}
+                   onChange={handleChange}
+                   margin="normal"
+                   required
+                   variant="outlined"
+                 />
+                 <TextField
+                   fullWidth
+                   label="Email"
+                   name="email"
+                   type="email"
+                   value={formData.email}
+                   onChange={handleChange}
+                   margin="normal"
+                   required
+                   variant="outlined"
+                 />
+                 <TextField
+                   fullWidth label="Message"  name="message" value={formData.message}
+                   onChange={handleChange} margin="normal" required multiline   rows={4} variant="outlined"
+                 />
+                   <Button
+                     type="submit"
+                     variant="contained" fullWidth size="large"
+                     sx={{
+                       mt: 3,
+                       color: 'white',
+                       py: 1.5,
+                       borderRadius: 1,
+                     }}
+                   >
+                     Send Message
+                   </Button>
+               </form>
+             </Paper>
+           </Grid2>
+           
+            {/* Contact Information */}
+           <Grid2 item xs={12} md={6}>
+             <Paper
+               elevation={3}
+               sx={{
+                 p: 4,
+                 height: '100%',
+                 display: 'flex',
+                 flexDirection: 'column',
+                 justifyContent: 'center',
+               }}
+             >
+               <Typography
+                 variant="h4"
+                 gutterBottom
+                 sx={{
+                   fontWeight: 'bold',
+                   mb: 4,
+                 }}
+               >
+                 Contact Information
+               </Typography>
+               <Typography
+                 variant="body1"
+                 sx={{
+                   mb: 3,
+                   fontSize: '1.1rem',
+                   color: 'text.secondary',
+                 }}
+               >
+                 Feel free to reach out to me through any of these platforms. I'll get back to you as <br />
+                 soon as possible!
+               </Typography>
+               <Box sx={{ mt: 2 }}>
+                   <Button
+                     startIcon={<EmailIcon />}
+                     href="mailto:matt.simpson@email.com"
+                     sx={{
+                       mb: 2,
+                       width: '100%',
+                       justifyContent: 'flex-start',
+                       color: 'text.primary',
+                     }}
+                   >
+                     matt.simpson@email.com
+                   </Button>
+                  <Box sx={{ mt: 4 }}>
+                   <Typography variant="h6" gutterBottom>
+                     Social Media
+                   </Typography>
+                   <Box sx={{ display: 'flex', gap: 2 }}>
+                       <IconButton
+                         href="https://www.linkedin.com/in/matt-simpson"
+                         target="_blank"
+                         rel="noopener noreferrer"
+                         sx={{ color: '#0077B5' }}
+                       >
+                         <LinkedInIcon fontSize="large" />
+                       </IconButton>
+                       <IconButton
+                         href="https://github.com/matt-simpson"
+                         target="_blank"
+                         rel="noopener noreferrer"
+                         sx={{ color: '#333' }}
+                       >
+                         <GitHubIcon fontSize="large" />
+                       </IconButton>
+                   </Box>
+                 </Box>
+               </Box>
+             </Paper>
+           </Grid2>
+         </Grid2>
+     </Container>
+   </Box>
+ );
+};
+export default Contact;
