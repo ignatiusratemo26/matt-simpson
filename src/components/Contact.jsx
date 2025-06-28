@@ -91,25 +91,12 @@ const Contact = () => {
              >
                <form onSubmit={handleSubmit}>
                  <TextField
-                   fullWidth
-                   label="Name"
-                   name="name"
-                   value={formData.name}
-                   onChange={handleChange}
-                   margin="normal"
-                   required
-                   variant="outlined"
+                   fullWidth label="Name" name="name" value={formData.name} onChange={handleChange}
+                   margin="normal" required variant="outlined"
                  />
                  <TextField
-                   fullWidth
-                   label="Email"
-                   name="email"
-                   type="email"
-                   value={formData.email}
-                   onChange={handleChange}
-                   margin="normal"
-                   required
-                   variant="outlined"
+                   fullWidth label="Email"    name="email"  type="email"  value={formData.email}
+                   onChange={handleChange} margin="normal" required variant="outlined"
                  />
                  <TextField
                    fullWidth label="Message"  name="message" value={formData.message}

@@ -73,7 +73,7 @@ const Hero = () => {
                   color: 'text.primary',
                 }}
               >
-                Hello, I'm Matt Simpson
+                Hello, I'm Matthew Simpson
               </Typography>
 
               <Typography variant="h5" gutterBottom>

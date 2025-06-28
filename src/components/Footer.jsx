@@ -18,7 +18,7 @@ const Footer = () => {
          {/* Left section - Name and Description */}
          <Grid2 item xs={12} md={6}>
              <Typography variant="h6" color="text.primary" gutterBottom>
-               Matt Simpson
+               Matthew Simpson
              </Typography>
              <Typography variant="body2" color="text.secondary">
                Software Engineer passionate about creating beautiful and functional web applications.
@@ -69,7 +69,7 @@ const Footer = () => {
          }}
        >
            <Typography variant="body2" color="text.secondary">
-             © {currentYear} Matt Simpson. All rights reserved.
+             © {currentYear} Matthew Simpson. All rights reserved.
            </Typography>
        </Box>
      </Container>
